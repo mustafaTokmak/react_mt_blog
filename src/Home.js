@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import BlogList from './BlogList';
 const Home = () => {
     // let name = 'mario';
-    const [name, setName] = useState('mario');
+    // const [name, setName] = useState('mario');
     const [age, setAge] = useState(25);
 
     const handleClick = (e) => {
@@ -15,10 +15,12 @@ const Home = () => {
         console.log('hello ' + name);
 
     }
+    const [name, setName] = useState('mario');  
+
     useEffect(() =>  {
         console.log('use effect ran');
         console.log(blogs)
-    });
+    }, [name]); 
 
 
     const [blogs, setBlogs] = useState([
@@ -44,7 +46,8 @@ const Home = () => {
             
             <BlogList blogs={blogs} title="All Blogs !" handleDelete={handleDelete}/>
             <BlogList blogs={blogs.filter( (blog) => blog.author === 'mario')} title="Mario's blogs !" handleDelete={handleDelete}/>
-            
+            <button onClick={() => setName('luigi')}>chanage name</button>
+            <p>{name}</p>
             
 
 
